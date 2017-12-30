@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<ClientSetting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Port>0</Port>
+  <Borderless>false</Borderless>
+  <Width>1018</Width>
+  <Height>620</Height>
+  <Top>0</Top>
+  <Left>0</Left>
+</ClientSetting>

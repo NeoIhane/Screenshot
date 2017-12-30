@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<ServerSetting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Port>0</Port>
+  <Path />
+  <Filename>Screenshot.png</Filename>
+  <Brighness>1</Brighness>
+  <Saturation>0</Saturation>
+  <Contrast>1</Contrast>
+</ServerSetting>
