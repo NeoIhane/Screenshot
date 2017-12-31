@@ -3,23 +3,48 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.PostProcessing;
-public class ScreenshotSaver : MonoBehaviour 
+using UnityEngine.Networking;
+public class ScreenshotSaver : NetworkBehaviour
 {
     ServerSetting serverSetting = new ServerSetting();
     public PostProcessingProfile profile;
     public enum EDIT_MODE { BRIGHTNESS, SATURATION, CONTRAST, NONE };
-    public EDIT_MODE emode = EDIT_MODE.NONE;
+    public EDIT_MODE editMode = EDIT_MODE.NONE;
 
     [SerializeField]
     Camera renderCamera;
+    [SerializeField]
+    Texture2D picture_capture;
 
-    public void StartServer()
+    #region networking
+    NetworkManager netMngr;
+    NetworkClient client;
+    int port = 4444;
+
+    public void SetupServer()
+    {
+        NetworkServer.Listen(port);
+
+    }
+   /*[Command]
+    void CmdTest()
     {
         
+    }*/
+
+    void SendUpdateScreenshot()
+    {
+        //networkView.RPC("Send", RPCMode.Others, picture_capture.EncodeToPNG());
     }
+    void OnPlayerConnected(NetworkPlayer player)
+    {
+        Debug.Log(" connected from " + player.ipAddress + ":" + player.port);
+    }
+
+    #endregion
     public void LoadFileSetting()
     {
-        
+        serverSetting = ServerSetting.Load("ServerSetting.xml");
     }
     public void SetBSC(float brightness,float saturation,float contrast)
     {
@@ -44,18 +69,22 @@ public class ScreenshotSaver : MonoBehaviour
     }
     public void SavePicture()
     {
-        var png = GetRTPixels(renderCamera.targetTexture).EncodeToPNG();
+        picture_capture = GetRTPixels(renderCamera.targetTexture);
+        var png = picture_capture.EncodeToPNG();
         File.WriteAllBytes(serverSetting.Path + serverSetting.Filename + ".png", png);
+       
     }
 
 
 	// Use this for initialization
-	void Start () {
-		
-	}
+	void Start ()
+    {
+        SetupServer();
+    }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 

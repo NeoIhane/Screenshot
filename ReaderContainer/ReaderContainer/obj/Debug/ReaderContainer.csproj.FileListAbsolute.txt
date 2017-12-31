@@ -1,0 +1,10 @@
+C:\Users\NeoIhane\Documents\GitHub\Screenshot\ReaderContainer\ReaderContainer\bin\Debug\ReaderContainer.exe.config
+C:\Users\NeoIhane\Documents\GitHub\Screenshot\ReaderContainer\ReaderContainer\bin\Debug\ReaderContainer.exe
+C:\Users\NeoIhane\Documents\GitHub\Screenshot\ReaderContainer\ReaderContainer\bin\Debug\ReaderContainer.pdb
+C:\Users\NeoIhane\Documents\GitHub\Screenshot\ReaderContainer\ReaderContainer\obj\Debug\ReaderContainer.csprojResolveAssemblyReference.cache
+C:\Users\NeoIhane\Documents\GitHub\Screenshot\ReaderContainer\ReaderContainer\obj\Debug\ReaderContainer.Form1.resources
+C:\Users\NeoIhane\Documents\GitHub\Screenshot\ReaderContainer\ReaderContainer\obj\Debug\ReaderContainer.Properties.Resources.resources
+C:\Users\NeoIhane\Documents\GitHub\Screenshot\ReaderContainer\ReaderContainer\obj\Debug\ReaderContainer.csproj.GenerateResource.Cache
+C:\Users\NeoIhane\Documents\GitHub\Screenshot\ReaderContainer\ReaderContainer\obj\Debug\ReaderContainer.csproj.CoreCompileInputs.cache
+C:\Users\NeoIhane\Documents\GitHub\Screenshot\ReaderContainer\ReaderContainer\obj\Debug\ReaderContainer.exe
+C:\Users\NeoIhane\Documents\GitHub\Screenshot\ReaderContainer\ReaderContainer\obj\Debug\ReaderContainer.pdb
