@@ -37,24 +37,24 @@ namespace ReaderContainer
         private readonly IntPtr WA_INACTIVE = new IntPtr(0);
 
 
-        ClientSetting clientSetting = new ClientSetting();
-        string file = "App"+"\\ClientSetting.xml";
+        ReaderSetting readerSetting = new ReaderSetting();
+        string file = "App"+ "\\ReaderSetting.xml";
 
         public Form1()
         {
-            clientSetting = ClientSetting.Load(file);
+            readerSetting = ReaderSetting.Load(file);
 
             InitializeComponent();
 
-            this.Size = new Size(clientSetting.Width, clientSetting.Height);
-            if (clientSetting.Borderless)
+            this.Size = new Size(readerSetting.Width, readerSetting.Height);
+            if (readerSetting.Borderless)
                 this.FormBorderStyle = FormBorderStyle.None;
             else
                 this.FormBorderStyle = FormBorderStyle.Sizable;
 
-            this.Location = new Point(clientSetting.Left, clientSetting.Top);
+            this.Location = new Point(readerSetting.Left, readerSetting.Top);
 
-            Console.WriteLine(clientSetting.Width);
+            Console.WriteLine(readerSetting.Width);
             try
             {
                 process = new Process();
@@ -135,20 +135,20 @@ namespace ReaderContainer
         {
             if (e.KeyCode == Keys.S)
             {
-                clientSetting.Height = this.Height;
-                clientSetting.Width = this.Width;
-                clientSetting.Top = this.Top;
-                clientSetting.Left = this.Left;
+                readerSetting.Height = this.Height;
+                readerSetting.Width = this.Width;
+                readerSetting.Top = this.Top;
+                readerSetting.Left = this.Left;
 
-                clientSetting.Save(file);
+                readerSetting.Save(file);
 
                 MessageBox.Show("Save Settings");
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.B)
             {
-                clientSetting.Borderless = !clientSetting.Borderless;
-                if (clientSetting.Borderless)
+                readerSetting.Borderless = !readerSetting.Borderless;
+                if (readerSetting.Borderless)
                     this.FormBorderStyle = FormBorderStyle.None;
                 else
                     this.FormBorderStyle = FormBorderStyle.Sizable;

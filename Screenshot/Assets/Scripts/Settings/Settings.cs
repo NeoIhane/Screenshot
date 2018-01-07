@@ -6,37 +6,35 @@ using System.IO;
 using UnityEngine;
 //http://wiki.unity3d.com/index.php?title=Saving_and_Loading_Data:_XmlSerializer
 
-[XmlRoot("ServerSetting")]
-public class ServerSetting
+[XmlRoot("SaverSetting")]
+public class SaverSetting
 {
-    public string IP;
-    public int Port;
-    public string Path;
-    public string Filename;
-    public float Brighness;
-    public float Saturation;
-    public float Contrast;
+    public string Path = "";
+    public string Filename = "Screenshot";
+    public float Brighness = 0;
+    public float Saturation = 1;
+    public float Contrast = 1;
 
     public void Save(string path)
     {
-        var serializer = new XmlSerializer(typeof(ServerSetting));
+        var serializer = new XmlSerializer(typeof(SaverSetting));
         using (var stream = new FileStream(path, FileMode.Create))
         {
             serializer.Serialize(stream, this);
         }
     }
-    public static ServerSetting Load(string path)
+    public static SaverSetting Load(string path)
     {
-        var serializer = new XmlSerializer(typeof(ServerSetting));
+        var serializer = new XmlSerializer(typeof(SaverSetting));
         using (var stream = new FileStream(path, FileMode.Open))
         {
-            return serializer.Deserialize(stream) as ServerSetting;
+            return serializer.Deserialize(stream) as SaverSetting;
         }
     }
-    public static ServerSetting LoadFromText(string text)
+    public static SaverSetting LoadFromText(string text)
     {
-        var serializer = new XmlSerializer(typeof(ServerSetting));
-        return serializer.Deserialize(new StringReader(text)) as ServerSetting;
+        var serializer = new XmlSerializer(typeof(SaverSetting));
+        return serializer.Deserialize(new StringReader(text)) as SaverSetting;
     }
     public void ResetValue()
     {
@@ -46,36 +44,64 @@ public class ServerSetting
     }
 }
 
-[XmlRoot("ClientSetting")]
-public class ClientSetting
+[XmlRoot("ReaderSetting")]
+public class ReaderSetting
 {
-    public string IP;
-    public int Port;
-    public bool Borderless;
-    public int Width;
-    public int Height;
-    public int Top;
-    public int Left;
+    public bool Borderless = false;
+    public int Width = 500;
+    public int Height = 500;
+    public int Top = 0;
+    public int Left = 0;
 
     public void Save(string path)
     {
-        var serializer = new XmlSerializer(typeof(ClientSetting));
+        var serializer = new XmlSerializer(typeof(ReaderSetting));
         using (var stream = new FileStream(path, FileMode.Create))
         {
             serializer.Serialize(stream, this);
         }
     }
-    public static ClientSetting Load(string path)
+    public static ReaderSetting Load(string path)
     {
-        var serializer = new XmlSerializer(typeof(ClientSetting));
+        var serializer = new XmlSerializer(typeof(ReaderSetting));
         using (var stream = new FileStream(path, FileMode.Open))
         {
-            return serializer.Deserialize(stream) as ClientSetting;
+            return serializer.Deserialize(stream) as ReaderSetting;
         }
     }
-    public static ClientSetting LoadFromText(string text)
+    public static ReaderSetting LoadFromText(string text)
     {
-        var serializer = new XmlSerializer(typeof(ClientSetting));
-        return serializer.Deserialize(new StringReader(text)) as ClientSetting;
+        var serializer = new XmlSerializer(typeof(ReaderSetting));
+        return serializer.Deserialize(new StringReader(text)) as ReaderSetting;
+    }
+}
+[XmlRoot("NetworkSetting")]
+public class NetworkSetting
+{
+    public string IP = "127.0.0.1";
+    public int Port = 7777;
+    public int MaxConnects = 10;
+    public bool IsSendDirect = false;
+
+    public void Save(string path)
+    {
+        var serializer = new XmlSerializer(typeof(NetworkSetting));
+        using (var stream = new FileStream(path, FileMode.Create))
+        {
+            serializer.Serialize(stream, this);
+        }
+    }
+    public static NetworkSetting Load(string path)
+    {
+        var serializer = new XmlSerializer(typeof(NetworkSetting));
+        using (var stream = new FileStream(path, FileMode.Open))
+        {
+            return serializer.Deserialize(stream) as NetworkSetting;
+        }
+    }
+    public static NetworkSetting LoadFromText(string text)
+    {
+        var serializer = new XmlSerializer(typeof(NetworkSetting));
+        return serializer.Deserialize(new StringReader(text)) as NetworkSetting;
     }
 }

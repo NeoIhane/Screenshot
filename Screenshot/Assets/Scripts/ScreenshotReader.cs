@@ -6,41 +6,36 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
-public class ScreenshotReader : MonoBehaviour 
+using System.Net;
+using System.Net.Sockets;
+public class ScreenshotReader : MonoBehaviour
 {
     [SerializeField]
     RawImage image;
-    ClientSetting clientSetting = new ClientSetting();
-    int port = 4444;
-    string ip = "127.0.0.1";
-
-
-    NetworkClient client;
-
-    [RPC]
-    void SendTextures(byte[] receivedByte)
-    {
-        Texture2D receivedTexture = null;
-        receivedTexture = new Texture2D(2048, 2048);
-        receivedTexture.LoadImage(receivedByte);
-        image.texture = receivedTexture;
-    }
+    ReaderSetting readerSetting = new ReaderSetting();
+    NetworkSetting networkSetting = new NetworkSetting();
+    public NetworkManager networkManager;
 
     void SetupClient()
     {
-        client = new NetworkClient();
-        client.RegisterHandler(MsgType.Connect,OnConnected);
-        client.Connect(ip,port);
+        networkManager.networkAddress = networkSetting.IP;
+        networkManager.networkPort = networkSetting.Port;
+        networkManager.maxConnections = networkSetting.MaxConnects;
+        networkManager.StartClient();   
     }
-    void OnConnected(NetworkMessage netMsg)
+    
+
+
+
+    public void UpdateImage(Texture2D picture_capture)
     {
-        Debug.Log("Connnected");
+        image.texture = picture_capture;
     }
     // Use this for initialization
     void Start () 
     {
         LoadFileSetting();
-        SetScreen();
+        //SetScreen();
         AutoFixImage();
 
         SetupClient();
@@ -49,6 +44,7 @@ public class ScreenshotReader : MonoBehaviour
     void Update()
     {
         AutoFixImage();
+        
     }
 
 
@@ -56,16 +52,16 @@ public class ScreenshotReader : MonoBehaviour
     void LoadFileSetting()
     {
         //Debug.Log(Path.Combine(Application.absoluteURL, "ClientSetting.xml").ToString());
-        clientSetting = ClientSetting.Load(Path.Combine(Application.absoluteURL, "ClientSetting.xml"));
+        networkSetting = NetworkSetting.Load(Path.Combine(Application.absoluteURL, "NetworkSetting.xml"));
         
     }
     void SetScreen()
     {
-        Screen.SetResolution(clientSetting.Width, clientSetting.Height, false);
+        Screen.SetResolution(readerSetting.Width, readerSetting.Height, false);
     }
     void SaveScreenSetting()
     {
-       clientSetting.Save(Path.Combine(Application.absoluteURL, "ClientSetting.xml"));
+        readerSetting.Save(Path.Combine(Application.absoluteURL, "ReaderSetting.xml"));
     }
     void AutoFixImage()
     {
@@ -79,8 +75,8 @@ public class ScreenshotReader : MonoBehaviour
             {
                 image.rectTransform.sizeDelta = new Vector2((float)Screen.height, (float)Screen.height);
             }
-            clientSetting.Width = Screen.width;
-            clientSetting.Height = Screen.height;
+                readerSetting.Width = Screen.width;
+                readerSetting.Height = Screen.height;
         //}
     }
 

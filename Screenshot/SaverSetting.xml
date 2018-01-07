@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SaverSetting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Path />
+  <Filename>Screenshot</Filename>
+  <Brighness>0</Brighness>
+  <Saturation>0</Saturation>
+  <Contrast>0</Contrast>
+</SaverSetting>

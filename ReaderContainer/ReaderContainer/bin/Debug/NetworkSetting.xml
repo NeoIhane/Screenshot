@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NetworkSetting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <IP>127.0.0.1</IP>
+  <Port>7777</Port>
+  <MaxConnects>10</MaxConnects>
+  <IsSendDirect>false</IsSendDirect>
+</NetworkSetting>
