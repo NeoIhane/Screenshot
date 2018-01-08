@@ -1,7 +1,10 @@
 # Screenshot
+
 ##How to use
-1.Open ScreenSaver.exe in Saver folder (Run server)
-2.Open ReaderContainer.exe in Reader folder (Run Client)
+---
+* 1.Open ScreenSaver.exe in Saver folder (Run server)
+* 2.Open ReaderContainer.exe in Reader folder (Run Client)
+---
 
 ---
 ScreenSaver App Controls
@@ -15,6 +18,7 @@ R		Reset Saturation value, Brightness value and Contrast value
 M		ON/OFF Sounds
 F1		Debug
 ---
+
 ---
 ReaderSaver App Controls
 B		Change Windows/Borderless
@@ -26,6 +30,7 @@ Escape		ExitComplete
 
 
 ## Using
+
 ```
 * NetworkingManager
 * PostProcessing
