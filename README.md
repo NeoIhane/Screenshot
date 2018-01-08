@@ -4,7 +4,7 @@
 ---
 * 1.Open ScreenSaver.exe in Saver folder (Run server)
 * 2.Open ReaderContainer.exe in Reader folder (Run Client)
----
+
 
 ---
 ScreenSaver App Controls
@@ -17,7 +17,7 @@ C   		Contrast (use LeftArrow and Right Arrow to control value)
 R		Reset Saturation value, Brightness value and Contrast value
 M		ON/OFF Sounds
 F1		Debug
----
+
 
 ---
 ReaderSaver App Controls
@@ -26,7 +26,7 @@ S		Save setting value (Borderless,Top,Left,Width,Height) from current windows
 R		Load setting value from file ReaderSetting.xml 
 		(กรณีเปลี่ยนค่าจากไฟล์ ReaderSetting.xml หรือต้องการกลับไปใช้ค่าที่เซฟไว้) 
 Escape		ExitComplete
-```
+
 
 
 ## Using
@@ -37,7 +37,7 @@ Escape		ExitComplete
 * StandardAsset
 * free sound sfx form asset store
 * WindowsForm
-```
+
 
 ## Reference
 
