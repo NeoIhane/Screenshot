@@ -1,13 +1,13 @@
 # Screenshot
 
 ##How to use
+
 ---
-* 1.Open ScreenSaver.exe in Saver folder (Run server)
-* 2.Open ReaderContainer.exe in Reader folder (Run Client)
+1.Open ScreenSaver.exe in Saver folder (Run server)
+2.Open ReaderContainer.exe in Reader folder (Run Client)
 ```
 
 ScreenSaver App Controls
-```
 >Enter		capture screenshot
 >Spacebar	Load new file path and save last screenshot to new path
 >S		Saturation (use LeftArrow and Right Arrow to control value)
@@ -16,15 +16,13 @@ ScreenSaver App Controls
 >R		Reset Saturation value, Brightness value and Contrast value
 >M		ON/OFF Sounds
 >F1		Debug
-```
 
 ReaderSaver App Controls
-```
 >B		Change Windows/Borderless
 >S		Save setting value (Borderless,Top,Left,Width,Height) from current windows 
 >R		Load setting value from file ReaderSetting.xml 
 >Escape		ExitComplete
-```
+
 
 
 ## Using
