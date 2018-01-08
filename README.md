@@ -2,9 +2,11 @@
 
 ##How to use
 
----
+```
+
 1.Open ScreenSaver.exe in Saver folder (Run server)
 2.Open ReaderContainer.exe in Reader folder (Run Client)
+
 ```
 
 ScreenSaver App Controls
@@ -28,11 +30,13 @@ ReaderSaver App Controls
 ## Using
 
 ```
+
 * NetworkingManager
 * PostProcessing
 * StandardAsset
 * free sound sfx form asset store
 * WindowsForm
+
 ```
 
 ## Reference
