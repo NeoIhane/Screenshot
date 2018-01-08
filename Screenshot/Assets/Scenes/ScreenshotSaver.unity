@@ -261,13 +261,16 @@ MonoBehaviour:
   profile: {fileID: 11400000, guid: 00c1b815606f288418b3f3cd2465b52e, type: 2}
   editMode: 1
   renderCamera: {fileID: 1501938163}
-  picture_capture: {fileID: 2800000, guid: c3d66a8056f9db345b1ea380aa7e815d, type: 3}
+  picture_capture: {fileID: 2800000, guid: 5ec4e7ed8d61f3643978d6f53ebd83a3, type: 3}
   isSendDirect: 0
   networkManager: {fileID: 1974905797}
   fileUpdate: 0
   audio: {fileID: 945033571}
-  audio_select: {fileID: 8300000, guid: 49caa62bcbd844634880cf7f42639101, type: 3}
+  audio_select: {fileID: 8300000, guid: 76c8b58492efca44e8e06752ca3f3f7e, type: 3}
   audio_error: {fileID: 8300000, guid: fd38fe302db84034fad5daa4a037d679, type: 3}
+  audio_G: {fileID: 8300000, guid: ac79f521544f923469a578d23004e8af, type: 3}
+  audio_C: {fileID: 8300000, guid: d1f6bb4ccaae9764eae80cabf63f8e01, type: 3}
+  audio_F: {fileID: 8300000, guid: bd7aa5c51dac72f438d62ad8fc3e204a, type: 3}
   muted: 0
   error: 
 --- !u!4 &945033570

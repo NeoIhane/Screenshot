@@ -12,6 +12,9 @@ public class ScreenshotReader : MonoBehaviour
 {
     [SerializeField]
     RawImage image;
+    [SerializeField]
+    Texture2D NoImage;
+
     ReaderSetting readerSetting = new ReaderSetting();
     NetworkSetting networkSetting = new NetworkSetting();
     public NetworkManager networkManager;
@@ -29,7 +32,14 @@ public class ScreenshotReader : MonoBehaviour
 
     public void UpdateImage(Texture2D picture_capture)
     {
-        image.texture = picture_capture;
+        if (picture_capture == null)
+        {
+            image.texture = NoImage;
+        }
+        else
+        {
+            image.texture = picture_capture;
+        }
     }
     // Use this for initialization
     void Start () 

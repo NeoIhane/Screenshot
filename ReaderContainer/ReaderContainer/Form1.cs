@@ -38,14 +38,10 @@ namespace ReaderContainer
 
 
         ReaderSetting readerSetting = new ReaderSetting();
-        string file = "App"+ "\\ReaderSetting.xml";
-
-        public Form1()
+        //string file = "App"+ "\\ReaderSetting.xml";
+        string file = "ReaderSetting.xml";
+        public void Setting()
         {
-            readerSetting = ReaderSetting.Load(file);
-
-            InitializeComponent();
-
             this.Size = new Size(readerSetting.Width, readerSetting.Height);
             if (readerSetting.Borderless)
                 this.FormBorderStyle = FormBorderStyle.None;
@@ -53,8 +49,18 @@ namespace ReaderContainer
                 this.FormBorderStyle = FormBorderStyle.Sizable;
 
             this.Location = new Point(readerSetting.Left, readerSetting.Top);
+        }
+        public Form1()
+        {
+            readerSetting = ReaderSetting.Load(file);
 
+            InitializeComponent();
+
+            Setting();
+
+            
             Console.WriteLine(readerSetting.Width);
+
             try
             {
                 process = new Process();
@@ -141,8 +147,18 @@ namespace ReaderContainer
                 readerSetting.Left = this.Left;
 
                 readerSetting.Save(file);
+                try
+                {
+                    string soundpath = Application.StartupPath + "/Sounds/Complete.wav";
+                    //MessageBox.Show(soundpath);
+                    System.Media.SoundPlayer player = new System.Media.SoundPlayer(soundpath);
+                    player.Play();
+                }catch(Exception ex)
+                {
 
-                MessageBox.Show("Save Settings");
+                }
+
+                //MessageBox.Show("Save Settings");
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.B)
@@ -155,9 +171,16 @@ namespace ReaderContainer
 
                 e.Handled = true;
             }
-            else if (e.KeyCode == Keys.Q)
+            else if (e.KeyCode == Keys.Escape)
             {
                 Application.Exit();
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.R)
+            {
+                readerSetting = ReaderSetting.Load(file);
+                Setting();
+                e.Handled = true;
             }
         }
     }

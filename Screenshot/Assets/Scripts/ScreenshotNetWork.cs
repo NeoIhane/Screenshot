@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.IO;
+using System;
 public class ScreenshotNetWork : NetworkBehaviour
 {
     [Server]
@@ -21,23 +22,31 @@ public class ScreenshotNetWork : NetworkBehaviour
         Debug.Log("Rpc client:" + url);
         StartCoroutine(LoadTextureFromUrl(url, filename));
     }
-    IEnumerator LoadTextureFromUrl(string url, string filename)
+    public IEnumerator LoadTextureFromUrl(string url, string filename)
     {
         Texture2D tex2d;
         tex2d = new Texture2D(4, 4, TextureFormat.DXT1, false);
         Debug.Log("url " + url);
+
         string newUrl = CheckPath(url);
         if (newUrl != null)
         {
             using (WWW www = new WWW(newUrl + "/" + filename + ".png"))
             {
                 yield return www;
-                www.LoadImageIntoTexture(tex2d);
-                UpdatedTexture(tex2d);
+                try
+                {
+                    www.LoadImageIntoTexture(tex2d);
+                    UpdatedTexture(tex2d);
+                }catch (Exception ex)
+                {
+                    UpdatedTexture(null);
+                    File.WriteAllText(Application.dataPath + "LoadImageError.txt", ex.ToString());
+                }
             }
         }
     }
-    string CheckPath(string url)
+   public static string CheckPath(string url)
     {
         string newUrl = "";
         if(url.Length>2)

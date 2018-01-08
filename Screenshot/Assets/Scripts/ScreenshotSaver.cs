@@ -31,6 +31,9 @@ public class ScreenshotSaver : MonoBehaviour
     public AudioSource audio;
     public AudioClip audio_select;
     public AudioClip audio_error;
+    public AudioClip audio_G;
+    public AudioClip audio_C;
+    public AudioClip audio_F;
     public bool muted = false;
 
     public string error = "";
@@ -76,11 +79,11 @@ public class ScreenshotSaver : MonoBehaviour
         if (brightness > 100) brightness = 100;
         if (brightness < -100) brightness = -100;
 
-        if (saturation > 1) saturation = 1;
-        if (saturation < -1) saturation = -1;
+        if (saturation > 2) saturation = 2;
+        if (saturation < 0) saturation = 0;
 
-        if (contrast > 1) contrast = 1;
-        if (contrast < -1) contrast = -1;
+        if (contrast > 2) contrast = 2;
+        if (contrast < 0) contrast = 0;
 
         ColorGradingModel.Settings colorGrading = profile.colorGrading.settings;
         colorGrading.basic.postExposure = brightness;
@@ -88,9 +91,23 @@ public class ScreenshotSaver : MonoBehaviour
         colorGrading.basic.contrast = contrast;
         profile.colorGrading.settings = colorGrading;
     }
-    public void ChangePath(string path)
+    public void ChangePath()
     {
-        saverSetting.Path = path;
+        saverSetting = SaverSetting.Load("SaverSetting.xml");
+        Capture();
+    }
+    public void Capture()
+    {
+        if (CheckPhp(saverSetting.Path))
+        {
+            StartCoroutine(UploadPNG(saverSetting.Path, saverSetting.Filename, GetRTPixels(renderCamera.targetTexture)));
+            Debug.Log("save to web server");
+        }
+        else
+        {
+            StartCoroutine(SavePicture());
+            Debug.Log("save normal");
+        }
     }
     IEnumerator SavePicture()
     {
@@ -108,11 +125,11 @@ public class ScreenshotSaver : MonoBehaviour
         }catch (Exception ex)
         {
             error = ex.ToString();
+            PlaySoundError();
         }
     }
 
-
-	void Start ()
+    void Start ()
     {
         //serverSetting.Save("ServerSetting.xml");
         try
@@ -120,11 +137,29 @@ public class ScreenshotSaver : MonoBehaviour
             error = "";
             LoadFileSetting();
             SetBSC(ref saverSetting.Brighness, ref saverSetting.Saturation, ref saverSetting.Contrast);
+            if(!Directory.Exists(saverSetting.Path))
+            {
+                if(!CheckPhp(saverSetting.Path))
+                {
+                    error = "Directory not found, so I will change directory";
+                    saverSetting.Path = Path.GetDirectoryName(Application.dataPath);
+                    saverSetting.Save("SaverSetting.xml");
+                }
+            }
+            
+            if (!File.Exists(saverSetting.Path +"/"+ saverSetting.Filename+".png"))
+            {
+                var png = picture_capture.EncodeToPNG();//save blank file
+                File.WriteAllBytes(saverSetting.Path + "/" + saverSetting.Filename + ".png", png);
+                error = "File not found, so save blank file in "+ saverSetting.Path + "/" + saverSetting.Filename + ".png";
+            }
             SetupServer();
         }catch(Exception ex)
         {
             error = ex.ToString();
+            PlaySoundError();
         }
+       
     }
     private void OnGUI()
     {
@@ -161,37 +196,28 @@ public class ScreenshotSaver : MonoBehaviour
             case EDIT_MODE.CONTRAST:
                 if (Input.GetKey(KeyCode.LeftArrow))
                 {
-                    ContrastMoveValue(-0.1f);
+                    ContrastMoveValue(-0.01f);
                 }
                 else if (Input.GetKey(KeyCode.RightArrow))
                 {
-                    ContrastMoveValue(0.1f);
+                    ContrastMoveValue(0.01f);
                 }
                 break;
             case EDIT_MODE.SATURATION:
                 if (Input.GetKey(KeyCode.LeftArrow))
                 {
-                    SaturationMoveValue(-0.1f);
+                    SaturationMoveValue(-0.01f);
                 }
                 else if (Input.GetKey(KeyCode.RightArrow))
                 {
-                    SaturationMoveValue(0.1f);
+                    SaturationMoveValue(0.01f);
                 }
                 break;
         }
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if (CheckPhp(saverSetting.Path))
-            {
-                StartCoroutine(UploadPNG(saverSetting.Path, saverSetting.Filename, GetRTPixels(renderCamera.targetTexture)));
-                Debug.Log("save to web server");
-            }
-            else
-            {
-                StartCoroutine(SavePicture());
-                Debug.Log("save normal");
-            }
+            Capture();
             PlaySoundSelect();
         }
         else if (Input.GetKeyDown(KeyCode.M))
@@ -201,27 +227,27 @@ public class ScreenshotSaver : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.S))
         {
             editMode = EDIT_MODE.SATURATION;
-            PlaySoundSelect();
+            PlaySoundF();
         }
         else if (Input.GetKeyDown(KeyCode.B))
         {
             editMode = EDIT_MODE.BRIGHTNESS;
-            PlaySoundSelect();
+            PlaySoundG();
         }
         else if (Input.GetKeyDown(KeyCode.C))
         {
             editMode = EDIT_MODE.CONTRAST;
-            PlaySoundSelect();
+            PlaySoundC();
         }
         else if (Input.GetKeyDown(KeyCode.R))//reset Brighness, Saturation and Contrast value
         {
             ResetBSC();
-            PlaySoundSelect();
+            //PlaySoundSelect();
             Debug.Log("Reset Brighness, Saturation and Contrast value");
         }
 /*      else if (Input.GetKey(KeyCode.LeftControl)&&Input.GetKeyDown(KeyCode.Space))//change path with open dialog
         {
-#if UNITY_EDITOR 
+#if UNITY_EDITOR //Can't build file.
             string path = EditorUtility.SaveFolderPanel("Load png Textures", "", "");
             Debug.Log(path);
             if(path!="")
@@ -234,8 +260,9 @@ public class ScreenshotSaver : MonoBehaviour
         }*/
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            LoadFileSetting();
-            Debug.Log("reload path form setting sile");
+            ChangePath();
+            Debug.Log("reload path form setting file");
+            
             PlaySoundSelect();
         }
        
@@ -247,6 +274,18 @@ public class ScreenshotSaver : MonoBehaviour
     public void PlaySoundError()
     {
         audio.PlayOneShot(audio_error);
+    }
+    public void PlaySoundC()
+    {
+        audio.PlayOneShot(audio_C);
+    }
+    public void PlaySoundG()
+    {
+        audio.PlayOneShot(audio_G);
+    }
+    public void PlaySoundF()
+    {
+        audio.PlayOneShot(audio_F);
     }
     static public Texture2D GetRTPixels(RenderTexture rt)
     {

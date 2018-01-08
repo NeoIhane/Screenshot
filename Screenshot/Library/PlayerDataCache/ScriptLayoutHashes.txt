@@ -1,6 +1,6 @@
 WindowsStandalone
 SceneListBegin?
-Assets/Scenes/ScreenshotReader.unity
+Assets/Scenes/ScreenshotSaver.unity
 SceneListEnd?
 7ba1e84ad3d2d8813486668e75f842ce Assembly-CSharp-firstpass.dll:UnityStandardAssets.Effects.ExtinguishableParticleSystem
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -121,11 +121,12 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 0fa000ea038e4c4dd32a4d3bbee6a9a4 Assembly-CSharp.dll:.testloadimage
 bdf776e4f8961b0981eb3c3b8a5f1206 Assembly-CSharp.dll:.ScreenshotNetwork
 d43617e1b02ccede92e22c3aece0b061 Assembly-CSharp.dll:.SetWindow
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.createfilexml
 205965134a5874db410d674ebdf33ba7 Assembly-CSharp.dll:.ExampleWheelController
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.CallbackExecutor
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.Editor.Placeholder
 e97ff9540a49b92b779792c195839d33 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Effects.AfterburnerPhysicsForce
-d972211d6922c9d16bd65ec3ce235a5f Assembly-CSharp.dll:.ScreenshotSaver
+3801c8c47ed1572b7c387ea444c09731 Assembly-CSharp.dll:.ScreenshotSaver
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp-firstpass.dll:UnityStandardAssets.Effects.FireLight
 60b2bb652410a5867a5ab9a01cd38461 Assembly-CSharp.dll:.netServer
 869e5abc2271c3b618904edff22e38ef Assembly-CSharp-firstpass.dll:UnityStandardAssets.Effects.ExplosionFireAndDebris
@@ -161,6 +162,5 @@ ab232dc3d94359ca42eabb9c72cbbb82 Assembly-CSharp-firstpass.dll:UnityStandardAsse
 f671a42aea5f34fec6a4450a3668c615 Assembly-CSharp.dll:UnityEngine.PostProcessing.PostProcessingProfile
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 c9576c6a51e2e71bc5caab85a96801e8 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Effects.SmokeParticles
-6abb8dba7ffc4e6ab15b09c2d208ed39 Assembly-CSharp.dll:.ScreenshotReader
+211eb9dd7dc6fda2f788908c2cef4efd Assembly-CSharp.dll:.ScreenshotReader
 1be1a8ddb0adb0ebac8a1345b9224cfe Assembly-CSharp.dll:.User
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.createfilexml

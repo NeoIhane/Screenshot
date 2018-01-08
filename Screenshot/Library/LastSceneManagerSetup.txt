@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/ScreenshotReader.unity
+- path: Assets/Scenes/ScreenshotSaver.unity
   isLoaded: 1
   isActive: 1
