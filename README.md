@@ -10,21 +10,30 @@
 ```
 
 ScreenSaver App Controls
->Enter		capture screenshot
->Spacebar	Load new file path and save last screenshot to new path
->S		Saturation (use LeftArrow and Right Arrow to control value)
->B		Brightness (use LeftArrow and Right Arrow to control value)
->C   		Contrast (use LeftArrow and Right Arrow to control value)
->R		Reset Saturation value, Brightness value and Contrast value
->M		ON/OFF Sounds
->F1		Debug
+
+```
+
+Enter		capture screenshot
+Spacebar	Load new file path and save last screenshot to new path
+S		Saturation (use LeftArrow and Right Arrow to control value)
+B		Brightness (use LeftArrow and Right Arrow to control value)
+C   		Contrast (use LeftArrow and Right Arrow to control value)
+R		Reset Saturation value, Brightness value and Contrast value
+M		ON/OFF Sounds
+F1		Debug
+
+```
 
 ReaderSaver App Controls
->B		Change Windows/Borderless
->S		Save setting value (Borderless,Top,Left,Width,Height) from current windows 
->R		Load setting value from file ReaderSetting.xml 
->Escape		ExitComplete
 
+```
+
+B		Change Windows/Borderless
+S		Save setting value (Borderless,Top,Left,Width,Height) from current windows 
+R		Load setting value from file ReaderSetting.xml 
+Escape		ExitComplete
+
+```
 
 
 ## Using
