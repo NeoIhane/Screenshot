@@ -1,6 +1,6 @@
 # Screenshot
 
-##How to use
+## How to use
 
 ```
 
@@ -9,7 +9,8 @@
 
 ```
 
-ScreenSaver App Controls
+
+ScreenSaver Controls
 
 ```
 
@@ -24,7 +25,8 @@ F1		Debug
 
 ```
 
-ReaderSaver App Controls
+
+ReaderSaver Controls
 
 ```
 
@@ -40,11 +42,11 @@ Escape		ExitComplete
 
 ```
 
-* NetworkingManager
-* PostProcessing
-* StandardAsset
-* free sound sfx form asset store
-* WindowsForm
+- NetworkingManager
+- PostProcessing
+- StandardAsset
+- free sound sfx form asset store
+- WindowsForm
 
 ```
 
